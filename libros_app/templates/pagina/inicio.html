@@ -1,0 +1,27 @@
+{% extends "plantilla.html" %}
+{% load static %}
+{% block titulo %} Inicio {% endblock %}
+
+
+{% block contenido %}
+{% if user.is_authenticated %}
+    <!-- Contenido para usuarios autenticados-->
+    <center><h1>Welcome {{user.username}}!</h1></center>
+        
+    {% else %}
+    <!-- Contenido para todo el publico-->
+    <br/>
+    
+{% endif %}
+<div class="p-5 bg-light">
+    <div class="container">
+        <h1 class="display-3">Bienvenidos al sitio de la libreria</h1>
+        <p class="lead">Empezar</p>
+        <hr class="my-2">
+        <p>Mas informacion</p>
+        <p class="lead">
+            <a class="btn btn-primary btn-lg" href="libros" role="button">Libreria</a>
+        </p>
+    </div>
+</div>
+{% endblock %}  

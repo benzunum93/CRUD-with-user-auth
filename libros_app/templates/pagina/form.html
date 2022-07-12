@@ -1,0 +1,34 @@
+<!--Muestra los datos que se tienen guardados-->
+
+<form enctype="multipart/form-data" method="post">
+  {% csrf_token %} <!-- LLave que le dice a django que este formulario le pertenece a esta aplicacions-->
+  {% for campo in formulario %}
+
+  <div class="mb-3">
+    <label for="" class="form-label">{{ campo.label }}:</label>
+  {% if campo.field.widget.input_type == 'file' and campo.value %}
+  <br/>
+  <img src="{{MEDIA_URL}}/imagenes/{{ campo.value}}" width="100" alt="" srcset="">
+
+  {% endif %}
+
+    <input 
+      type="{{ campo.field.widget.input_type }}"
+      class="form-control"
+      name="{{ campo.name }}" 
+      id="" 
+      aria-describedby="helpId" 
+      placeholder="{{ campo.label }}"
+      value = "{{ campo.value | default:'' }}" 
+      
+      /><!--Configuracion de la salida que se muetra en cualquier pagina a la que se le incluya
+      value = "{{ campo.value | default:'' }}" Muestra el valor que tiene contenido campo y si no hay nada aparece vacio-->
+    
+  </div>
+  <div class ="col-12 help-text"> {{ campo.errors }}</div><!--Para que muetre errores si no hay datos-->
+  {% endfor %}
+
+<input name="" id="" class="btn btn-success" type="submit" value="Enviar información">
+<a name="Cancelar" id="" class="btn btn-danger" href="{% url 'Libros' %}" role="button">Cancelar</a>     
+</form>
+

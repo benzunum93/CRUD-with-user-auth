@@ -1,0 +1,57 @@
+{% extends "plantilla.html" %}
+{% block titulo %} Nosotros {% endblock %}
+
+
+{% block contenido %}
+<!-- <sbs5-table-default> -->
+<div class="card">
+    
+    <div class="card-header">
+         <a name="Crear" id="" class="btn btn-success" href="{% url 'Crear' %}" role="button">Agregar nuevo libro</a>
+     </div>
+    
+     <div class="card-body">
+         <h4 class="card-title">Libros</h4>
+         <table class="table">
+             <thead>
+                 <tr>
+                     <th>ID</th>
+                     <th>Titulo</th>
+                     <th>Imagen</th>
+                     <th>Descripción</th>
+                     <th>Acciones</th>
+                 </tr>
+             </thead>
+             <tbody>
+                 <tr>
+                    {% for libro in libros %}
+                     <td>{{ libro.id }}</td>
+                     <td>{{libro.titulo }}</td>
+                     <td>  <img src="{{ libro.imagen.url }}" height="100" /></td>
+                        
+                       
+                     <td>{{libro.descripcion }}</td>
+                    
+                     <td>
+                        <a name="Editar" id="" class="btn btn-info" href="{% url 'Editar' libro.id %}" role="button">Editar</a> 
+                        
+                        {% if user.is_authenticated %}
+                        |
+                        <a name="Eliminar" id="" class="btn btn-danger" href="{% url 'Eliminar' libro.id  %}" role="button">Borrar</a>
+                        {%endif%}
+                     </td>
+                    
+                     
+                 </tr>
+                 {% endfor %}
+             </tbody>
+         </table>
+         
+
+
+     </div>
+     <div class="card-footer text-muted">
+         
+     </div>
+ </div>
+{% endblock %}  

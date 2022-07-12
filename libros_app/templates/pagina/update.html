@@ -1,0 +1,34 @@
+
+{% extends "plantilla.html" %}<!--Importa plantilla.html para ser usada-->
+{% block titulo %} Agregar nuevo libro {% endblock %}
+
+
+{% block contenido %}
+{% if user.is_authenticated %}
+ <div class="card"> <!-- bs5-card-head-foot -->
+     <div class="card-header">
+        Editar informacion de libro
+     </div>
+     <div class="card-body">
+         <h4 class="card-title">Datos de libro</h4>
+         
+     {% include 'pagina/form.html' %}
+     </div>
+     <div class="card-footer text-muted">
+        
+     </div>
+ </div>
+{%else%}
+<html>
+<head>
+<title>Redirigir al navegador a otra URL</title>
+<!--###############Tener en cuenta cambiar la URL por la necesaria segun el escenario que se necesite###################-->
+<META HTTP-EQUIV="REFRESH" CONTENT="5;URL=http://192.168.10.136/libros">
+</head>
+<body>
+You don't have permissions to update a book, please log in...
+</body>
+</html>
+{%endif%}
+
+{% endblock %}  
