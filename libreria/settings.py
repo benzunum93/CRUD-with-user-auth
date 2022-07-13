@@ -36,7 +36,8 @@ SECRET_KEY = keysecret
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+#DEBUG = False 
+DEBUG = bool( os.environ.get('DJANGO_DEBUG', False) ) #Its False
 #IP permitidas
 ALLOWED_HOSTS = [
                     'www.vuelossim.com',
